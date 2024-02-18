@@ -11,8 +11,6 @@ const galerie = document.querySelector(".gallery");
 
 function afficherTravaux(travaux) {
 
-    
-    
     for(const travail of travaux) {
         const figure = document.createElement("figure");
 
@@ -23,34 +21,33 @@ function afficherTravaux(travaux) {
         const figcaption = document.createElement("figcaption");
         figcaption.textContent = travail.title
 
-
         figure.appendChild(image);
         figure.appendChild(figcaption)
         galerie.appendChild(figure);
-        
     }
-    
 }
 
-afficherElementsFiltres = (travaux) => {
+/* FILTRE BOUTONS */
 
-    const boutons = document.querySelectorAll(".filtres button");
+const boutons = document.querySelectorAll(".filtres button");
 
-    for(let bouton of boutons) {
+boutons[0].classList.add("active");
+
+function afficherElementsFiltres(travaux) {
+
+    for(const bouton of boutons) {
         bouton.addEventListener("click", () => {
             if(bouton.value === "0") {
-                galerie.innerHTML = ""
-                afficherTravaux(travaux)
+                galerie.innerHTML = "";
+                afficherTravaux(travaux);
             }
             else {
                 const travauxFiltres = travaux.filter(function (travail) {
                     return travail.categoryId === parseInt(bouton.value);
                 })
-                galerie.innerHTML = ""
-                afficherTravaux(travauxFiltres)
+                galerie.innerHTML = "";
+                afficherTravaux(travauxFiltres);
             }
-
-            /* Couleur des boutons */ 
 
             boutons.forEach((bouton) => {
                 bouton.classList.remove("active");
@@ -59,15 +56,7 @@ afficherElementsFiltres = (travaux) => {
             
         })
     }
-
 }
-
-
-
-
-
-
-
 
 
 
