@@ -87,3 +87,21 @@ if(!token) {
     buttonEdition.style.display = "none";
 }
 
+/* Modale */
+
+const conteneurModale = document.querySelector(".conteneur-modale");
+const fermer = document.querySelector(".modale i");
+
+buttonEdition.addEventListener("click", () => {
+    conteneurModale.style.display = "block";
+})
+
+fermer.addEventListener("click", () => {
+    conteneurModale.style.display = "none";
+})
+
+window.addEventListener("click", (event) => {
+    if (event.target === conteneurModale) {
+      conteneurModale.style.display = "none";
+    }
+  });
