@@ -54,13 +54,26 @@ body {
 	font-size: 14px;
 	background: #FFFEF8;
 }
+
+.mode-edition {
+	height: 59px;
+	background-color: #000000;
+	color: white;
+	display: none;
+	align-items: center;
+	justify-content: center;
+}
+.mode-edition i {
+	padding-right: 10px;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0;
 }
 section {
-	margin: 50px 0
+	margin: 70px 0
 }
 
 h1{
@@ -69,7 +82,8 @@ h1{
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: #B1663C;
+	cursor: pointer;
 }
 
 h1 > span {
@@ -129,15 +143,20 @@ nav li a {
 	margin-bottom: 0.5em;
 }
 #portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+	padding-right: 30px;
 }
-.gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+.portfolio-titre {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 3em;
+}
+.portfolio-titre a {
+	display: none;
+	cursor: pointer;
+}
+.portfolio-titre i {
+	padding-right: 10px;
 }
 
 .filtres {
@@ -146,7 +165,6 @@ nav li a {
 	gap: 10px;
 	
 }
-
 .filtres button {
 	font-family: 'Syne';
 	font-weight: 700;
@@ -160,16 +178,22 @@ nav li a {
 	cursor: pointer;
 	margin-bottom: 3em;
 }
-
 .filtres button.active {
 	background-color: #1D6154;
 	color: white;
 }
 
-.gallery img {
+.galerie {
 	width: 100%;
-
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
 }
+.galerie img {
+	width: 100%;
+}
+
 #contact {
 	width: 50%;
 margin: auto;
@@ -187,7 +211,6 @@ margin: auto;
 	display: flex;
 	flex-direction: column;
 }
-
 #contact input {
 	height: 50px;
 	font-size: 1.2em;
@@ -219,7 +242,8 @@ footer nav ul {
 	margin: 2em
 }
 
-/* page de connexion */
+/* Page de connexion */
+
 #connexion {
 	text-align: center;
 	display: flex;
@@ -242,12 +266,13 @@ footer nav ul {
 }
 #connexion .se-connecter {
 	width: 180px;
+	cursor: pointer;
 }
 #connexion a {
 	text-align: center;
 	color: inherit;
+	
 }
-
 #connexion label {
 	margin: 2em 0 1em 0;
 }

@@ -7,7 +7,9 @@ async function app() {
 
 app()
 
-const galerie = document.querySelector(".gallery");
+/* Galerie */ 
+
+const galerie = document.querySelector(".galerie");
 
 function afficherTravaux(travaux) {
 
@@ -27,7 +29,7 @@ function afficherTravaux(travaux) {
     }
 }
 
-/* FILTRE BOUTONS */
+/* Boutons Filtres */
 
 const boutons = document.querySelectorAll(".filtres button");
 
@@ -58,11 +60,30 @@ function afficherElementsFiltres(travaux) {
     }
 }
 
+/* Compte Editeur */
 
+const token = window.localStorage.getItem("token");
+console.log("Token : " + token);
 
+const boutonConnexion = document.querySelector(".btn-connexion a")
+const modeEdition = document.querySelector(".mode-edition");
+const buttonEdition = document.querySelector(".modifier");
 
+if(token) {
+    boutonConnexion.href = "";
+    boutonConnexion.innerText = "logout";
+    modeEdition.style.display = "flex";
+    buttonEdition.style.display = "block";
 
+    boutonConnexion.addEventListener("click", () => {
+        window.localStorage.removeItem("token");
+    })
+}
 
-
-
+if(!token) {
+    boutonConnexion.href = "./connexion.html";
+    boutonConnexion.innerText = "login";
+    modeEdition.style.display = "none";
+    buttonEdition.style.display = "none";
+}
 
