@@ -2,7 +2,7 @@ async function app() {
     const reponse = await fetch("http://localhost:5678/api/works");
     const travaux = await reponse.json();
     afficherTravaux(travaux);
-    afficherElementsFiltres(travaux)
+    initialisationFiltres(travaux)
 }
 
 app()
@@ -31,31 +31,50 @@ function afficherTravaux(travaux) {
 
 /* Boutons Filtres */
 
-const boutons = document.querySelectorAll(".filtres button");
+const filtres = document.querySelector(".filtres");
 
-boutons[0].classList.add("active");
+async function initialisationFiltres(travaux) {
+    const reponse = await fetch("http://localhost:5678/api/categories");
+    const categories = await reponse.json();
 
-function afficherElementsFiltres(travaux) {
+    categories.unshift({
+        id: 0,
+        name: "Tous"
+    });
 
-    for(const bouton of boutons) {
-        bouton.addEventListener("click", () => {
-            if(bouton.value === "0") {
+    for(const categorie of categories) {
+
+        const filtre = document.createElement("button");
+        filtre.dataset.id = categorie.id;
+
+        if(categorie.id === 0) {
+            filtre.classList.add("active");
+        }
+
+        filtre.innerText = categorie.name;
+        filtres.appendChild(filtre);
+
+        filtre.addEventListener("click", () => {
+            if(filtre.dataset.id === "0") {
                 galerie.innerHTML = "";
                 afficherTravaux(travaux);
             }
             else {
                 const travauxFiltres = travaux.filter(function (travail) {
-                    return travail.categoryId === parseInt(bouton.value);
+                    return travail.categoryId === parseInt(filtre.dataset.id);
                 })
                 galerie.innerHTML = "";
                 afficherTravaux(travauxFiltres);
             }
 
-            boutons.forEach((bouton) => {
-                bouton.classList.remove("active");
-            });
-            bouton.classList.add("active");
+            /* Couleurs des boutons */
             
+            const tousLesBoutons = document.querySelectorAll(".filtres button")
+
+            tousLesBoutons.forEach((filtre) => {
+                filtre.classList.remove("active");
+            });
+            filtre.classList.add("active");
         })
     }
 }
@@ -104,4 +123,9 @@ window.addEventListener("click", (event) => {
     if (event.target === conteneurModale) {
       conteneurModale.style.display = "none";
     }
-  });
+});
+
+
+/* pas de rafraichis de page quand on ajoute un work */
+
+/* LiveServer rafraichis automatiquement (attention) */
