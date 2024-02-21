@@ -289,7 +289,6 @@ footer nav ul {
 	background-color: rgba(0, 0, 0, 0.5);
 }
 .modale {
-	width: 630px;
 	background-color: white;
 	position: fixed;
 	left: 50%;
@@ -300,30 +299,65 @@ footer nav ul {
 .conteneur-modale.active {
 	display: block;
 }
-.modale {
+.modale-projet {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	
+}
+.modale-ajout {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	display: none;
 }
 .modale h3 {
-	font-size: 26px;
-	padding: 60px;
+	font-size: 30px;
+	padding: 2.5em 0 2em;
 }
-.modale i {
+.modale i.fa-regular.fa-x {
 	position: absolute;
-	top: 30px;
-	right: 30px;
+	top: 40px;
+	right: 40px;
 	font-weight: 900;
 	font-size: 16px;
 	cursor: pointer;
 }
+.galerie-modale {
+	width: 70%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 30px;
+	padding-bottom: 3em;
+}
+.galerie-modale figure {
+	position: relative;
+}
+.galerie-modale img {
+	width: 100%;
+}
+.galerie-modale div {
+	position: absolute;
+	background-color: #000000;
+	top: 5px;
+	right: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.galerie-modale figure i {
+	font-size: 16px;
+	color: #ffffff;
+	padding: 6px;
+}
 .modale hr {
-	width: 420px
+	width: 70%;
 }
 .modale input {
-	height: 36px;
-	width: 237px;
+	height: 45px;
+	width: 250px;
 	font-size: 1em;
 	border: none;
 	cursor: pointer;
+	margin: 40px;
 }

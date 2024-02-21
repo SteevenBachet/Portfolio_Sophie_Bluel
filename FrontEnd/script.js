@@ -3,6 +3,7 @@ async function app() {
     const travaux = await reponse.json();
     afficherTravaux(travaux);
     initialisationFiltres(travaux)
+    afficherTravauxModale(travaux);
 }
 
 app()
@@ -68,7 +69,7 @@ async function initialisationFiltres(travaux) {
             }
 
             /* Couleurs des boutons */
-            
+
             const tousLesBoutons = document.querySelectorAll(".filtres button")
 
             tousLesBoutons.forEach((filtre) => {
@@ -129,3 +130,41 @@ window.addEventListener("click", (event) => {
 /* pas de rafraichis de page quand on ajoute un work */
 
 /* LiveServer rafraichis automatiquement (attention) */
+
+const galerieModale = document.querySelector(".galerie-modale");
+
+
+function afficherTravauxModale(travaux) {
+    for(const travail of travaux) {
+        const figure = document.createElement("figure");
+
+        const image = document.createElement("img");
+        image.src = travail.imageUrl;
+        image.alt = travail.title;
+
+        const supprimer = document.createElement("div");
+        const corbeille = document.createElement("i");
+        corbeille.classList.add("fa-solid", "fa-trash-can");
+
+        supprimer.appendChild(corbeille);
+        figure.appendChild(supprimer);
+        figure.appendChild(image);
+        galerieModale.appendChild(figure);
+
+        ajouterEcouteurSupprimer(travail, supprimer);
+    }
+
+}
+
+function ajouterEcouteurSupprimer(travail, supprimer) {
+    supprimer.addEventListener("click", async () => {
+        
+        await fetch(`http://localhost:5678/api/works/${travail.id}`,
+            {   method: 'DELETE',
+                headers: {
+                'Authorization': `Bearer ${token}`
+                } 
+            }  
+        )  
+    })
+}
