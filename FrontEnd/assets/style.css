@@ -296,24 +296,15 @@ footer nav ul {
 	transform: translate(-50%, -50%);
 	border-radius: 10px;
 }
-.conteneur-modale.active {
-	display: block;
-}
 .modale-projet {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	
-}
-.modale-ajout {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	display: none;
 }
 .modale h3 {
 	font-size: 30px;
 	padding: 2.5em 0 2em;
+	text-align: center;
 }
 .modale i.fa-regular.fa-x {
 	position: absolute;
@@ -329,7 +320,7 @@ footer nav ul {
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 30px;
-	padding-bottom: 3em;
+	padding-bottom: 60px;
 }
 .galerie-modale figure {
 	position: relative;
@@ -353,11 +344,93 @@ footer nav ul {
 .modale hr {
 	width: 70%;
 }
-.modale input {
+.modale input, .modale select {
 	height: 45px;
 	width: 250px;
 	font-size: 1em;
 	border: none;
 	cursor: pointer;
+}
+.modale-projet input{
 	margin: 40px;
+}
+
+/* Modale ajout */
+
+.modale-ajout {
+	display: flex;
+	flex-direction: column;
+	display: none;
+	align-items: center;
+	width: 600px;
+}
+.modale-ajout i.fa-solid.fa-arrow-left {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	font-weight: 900;
+	font-size: 20px;
+	cursor: pointer;
+}
+.modale-ajout i.fa-regular.fa-image {
+	font-size: 70px;
+	color: #B9C5CC;
+}
+
+.modale-ajout .conteneur-ajouter-photo {
+	background-color: #E8F1F6;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	padding: 15px;
+	margin-bottom: 30px;
+}
+.modale-ajout .label-ajouter-photo input[type="file"] {
+    display: none;
+}
+.modale-ajout .label-ajouter-photo span {
+	display: inline-block;
+    background-color: #CBD6DC;
+    color: #306685;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+	width: 180px;
+	text-align: center;
+}
+.modale-ajout .label-ajouter-photo:hover span {
+    background-color: #306685;
+	color: #ffffff;
+}
+.modale-ajout .conteneur-ajouter-photo p {
+	font-size: 12px;
+}
+.modale-ajout form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 70%;
+}
+.label-titre, .label-categorie {
+	width: 100%;
+	padding-bottom: 10px;
+}
+#titre, #categorie {
+	width: 100%;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	margin-bottom: 30px;
+}
+.modale-ajout hr {
+	margin-top: 20px;
+	width: 100%;
+	font-size: 1px;
+}
+.modale-ajout #valider{
+	margin: 30px 0 40px 0;
+	background-color: #A7A7A7;
+}
+.modale-ajout #valider.active {
+	background-color: #1D6154;
 }

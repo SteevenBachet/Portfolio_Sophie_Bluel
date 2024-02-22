@@ -62,7 +62,7 @@
 
 					<div class="modale-projet">
 						<h3>Galerie photo</h3>
-						<i class="fa-regular fa-x"></i>
+						<i class="fa-regular fa-x" id="fermer"></i>
 						<div class="galerie-modale"></div>
 						<hr>
 						<input class="ajouter-photo" type="submit" value="Ajouter une photo"></input>
@@ -70,7 +70,29 @@
 
 					<div class="modale-ajout">
 						<h3>Ajout photo</h3>
-						<i class="fa-regular fa-x"></i>
+						<i class="fa-regular fa-x" id="fermer"></i>
+						<i class="fa-solid fa-arrow-left" id="retour"></i>
+						<form method="#">
+							<div class="conteneur-ajouter-photo">
+								<i class="fa-regular fa-image"></i>
+								<label for="ajouter-photo" class="label-ajouter-photo">
+									<span>+ Ajouter photo</span>
+									<input id="ajouter-photo" type="file" />
+								</label>
+								<p>jpg.png : 4mo max</p>
+							</div>
+							<label for="titre" class="label-titre">Titre</label>
+							<input type="text" name="titre" id="titre">
+							<label for="categorie" class="label-categorie">Catégorie</label>
+							<select name="categorie" id="categorie">
+								<option value="" disabled selected hidden></option>
+								<option value="objets">Objets</option>
+								<option value="appartements">Appartements</option>
+								<option value="hotels-restaurants">Hôtels & Restaurants</option>
+							</select>
+							<hr>
+							<input type="submit" id="valider" value="Valider">
+						</form>
 					</div>
 					
 				</div>
@@ -80,7 +102,7 @@
 		<section id="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
-			<form action="#" method="post">
+			<form method="#">
 				<label for="name">Nom</label>
 				<input type="text" name="name" id="name">
 				<label for="email">Email</label>

@@ -110,15 +110,18 @@ if(!token) {
 /* Modale */
 
 const conteneurModale = document.querySelector(".conteneur-modale");
-const fermer = document.querySelector(".modale i");
+const fermer = document.querySelectorAll("#fermer");
 
 buttonEdition.addEventListener("click", () => {
     conteneurModale.style.display = "block";
 })
 
-fermer.addEventListener("click", () => {
-    conteneurModale.style.display = "none";
-})
+for(const buttonFermer of fermer) {
+    buttonFermer.addEventListener("click", () => {
+        conteneurModale.style.display = "none";
+        console.log("rrrrrrr")
+    })
+}
 
 window.addEventListener("click", (event) => {
     if (event.target === conteneurModale) {
@@ -126,13 +129,26 @@ window.addEventListener("click", (event) => {
     }
 });
 
+const buttonAjouterPhoto = document.querySelector(".ajouter-photo");
+const modaleProjet = document.querySelector(".modale-projet");
+const modaleAjout = document.querySelector(".modale-ajout")
+const retour = document.getElementById("retour");
+
+buttonAjouterPhoto.addEventListener("click", () => {
+    modaleProjet.style.display = "none";
+    modaleAjout.style.display = "flex";
+})
+
+retour.addEventListener("click", () => {
+    modaleProjet.style.display = "flex";
+    modaleAjout.style.display = "none";
+})
 
 /* pas de rafraichis de page quand on ajoute un work */
 
 /* LiveServer rafraichis automatiquement (attention) */
 
 const galerieModale = document.querySelector(".galerie-modale");
-
 
 function afficherTravauxModale(travaux) {
     for(const travail of travaux) {
@@ -153,7 +169,6 @@ function afficherTravauxModale(travaux) {
 
         ajouterEcouteurSupprimer(travail, supprimer);
     }
-
 }
 
 function ajouterEcouteurSupprimer(travail, supprimer) {
@@ -168,3 +183,19 @@ function ajouterEcouteurSupprimer(travail, supprimer) {
         )  
     })
 }
+
+/* Ajouter projet */
+
+const formulaireAjoutPhoto = document.querySelector(".modale-ajout form");
+const photo = document.getElementById("ajouter-photo")
+const titre = document.getElementById("titre");
+const categorie = document.getElementById("categorie");
+
+
+
+formulaireAjoutPhoto.addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log(titre.value);
+    console.log(categorie.value);
+    console.log(photo.value)
+})
