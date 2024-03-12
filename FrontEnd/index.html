@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -72,23 +72,23 @@
 						<h3>Ajout photo</h3>
 						<i class="fa-regular fa-x" id="fermer"></i>
 						<i class="fa-solid fa-arrow-left" id="retour"></i>
-						<form method="#">
+						<form method="#" name="formulaire">
 							<div class="conteneur-ajouter-photo">
 								<i class="fa-regular fa-image"></i>
 								<label for="ajouter-photo" class="label-ajouter-photo">
 									<span>+ Ajouter photo</span>
-									<input id="ajouter-photo" type="file" />
+									<input id="ajouter-photo" type="file" onchange="verificationTailleFichier()"/>
 								</label>
 								<p>jpg.png : 4mo max</p>
 							</div>
 							<label for="titre" class="label-titre">Titre</label>
-							<input type="text" name="titre" id="titre">
+							<input type="text" name="title" id="titre">
 							<label for="categorie" class="label-categorie">Catégorie</label>
-							<select name="categorie" id="categorie">
+							<select name="category" id="categorie">
 								<option value="" disabled selected hidden></option>
 								<option value="objets">Objets</option>
 								<option value="appartements">Appartements</option>
-								<option value="hotels-restaurants">Hôtels & Restaurants</option>
+								<option value="hotels & restaurants">Hôtels & Restaurants</option>
 							</select>
 							<hr>
 							<input type="submit" id="valider" value="Valider">

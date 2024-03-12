@@ -434,3 +434,7 @@ footer nav ul {
 .modale-ajout #valider.active {
 	background-color: #1D6154;
 }
+
+.modale-ajout .conteneur-ajouter-photo img {
+	height: 200px;
+}
