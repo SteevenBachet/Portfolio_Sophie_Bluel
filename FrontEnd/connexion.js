@@ -2,12 +2,19 @@ const formulaireConnexion = document.getElementById("formulaire-connexion");
 
 formulaireConnexion.addEventListener("submit", async (event) => {
     event.preventDefault();
-    
-    const identifiants = {
-        email: event.target.querySelector("[name=email-connexion]").value,
-        password: event.target.querySelector("[name=mot-de-passe-connexion]").value
-    };
 
+    const emailInput = event.target.querySelector("[name=email-connexion]");
+    const passwordInput = event.target.querySelector("[name=mot-de-passe-connexion]");
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if (email === "" || password === "") {
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    const identifiants = { email, password };
     const chargeUtile = JSON.stringify(identifiants);
 
     console.log("Envoi de la requête avec les données suivantes :", identifiants);
@@ -20,7 +27,10 @@ formulaireConnexion.addEventListener("submit", async (event) => {
         });
 
         if (!reponse.ok) {
-            throw new Error("Erreur lors de la requête");
+            alert("Mot de passe incorrect.");
+            emailInput.value = "";
+            passwordInput.value = "";
+            return;
         }
 
         const data = await reponse.json();

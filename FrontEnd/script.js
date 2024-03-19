@@ -39,6 +39,7 @@ async function initialisationFiltres(travaux) {
     const categories = await reponse.json();
 
     categories.unshift({
+        /* Ajouter une catégorie "tous" */
         id: 0,
         name: "Tous"
     });
@@ -209,6 +210,9 @@ const labelAjouterPhoto = document.querySelector(".conteneur-ajouter-photo label
 const texteAjouterPhoto = document.querySelector(".conteneur-ajouter-photo p");
 
 photo.addEventListener("change", (event) => {
+
+    verificationTailleFichier()
+
     const fichier = event.target.files[0];
 
     if(fichier) {
@@ -228,33 +232,41 @@ photo.addEventListener("change", (event) => {
     }
 })
 
+function verificationTailleFichier() {
+    const fichier = photo.files[0];
+    if (fichier && fichier.size > 4 * 1024 * 1024) { /* 4mo en octets */
+        alert("La taille du fichier ne doit pas dépasser 4 Mo.");
+        /* Réinitialiser la valeur de l'input file pour effacer le fichier sélectionné */
+        photo.value = '';
+    }
+}
+
 function verificationChampRemplis() {
     return photo.value.trim() !== "" && titre.value.trim() !== "" && categorie.value.trim() !== "";
 }
 
-function verificationTailleFichier() {
-    const boutonAjoutPhoto = document.getElementById("ajouter-photo");
-    const fichier = boutonAjoutPhoto.files[0];
-    if (fichier && fichier.size > 4 * 1024 * 1024) { /* 4mo en octets */
-        alert("La taille du fichier ne doit pas dépasser 4 Mo.");
-        /* Réinitialiser la valeur de l'input file pour effacer le fichier sélectionné */
-        boutonAjoutPhoto.value = '';
+/* Fonction d'activation du bouton valider */
+function activerBoutonValider() {
+    if (verificationChampRemplis()) {
+        boutonValider.classList.add("active");
+        boutonValider.disabled = false;
+    } else {
+        boutonValider.classList.remove("active");
+        boutonValider.disabled = true;
     }
 }
 
-/* Vérifier que tous le formulaire est correct pour permettre de cliquer sur le bouton submit */
-formulaireAjoutPhoto.addEventListener("change", ()=> {
-    if(verificationChampRemplis()) {
-        boutonValider.classList.add("active");
-        boutonValider.disabled = false;
-    }
-})
+/* Contrôle dynamique des inputs du formulaire */
+photo.addEventListener("change", activerBoutonValider);
+titre.addEventListener("input", activerBoutonValider);
+categorie.addEventListener("change", activerBoutonValider);
+window.addEventListener("load", activerBoutonValider);
 
 function soumissionFormulaireAjoutPhoto(travaux) {
 
     formulaireAjoutPhoto.addEventListener("submit", async (event) => {
         event.preventDefault();
-    
+
         /* Réinitialisation de la zone ajout image */
         const imageElement = document.getElementById("image-projet");
         if(!imageElement) {
@@ -280,18 +292,7 @@ function soumissionFormulaireAjoutPhoto(travaux) {
                 break;  
             }
         }
-    
-        /* modification de l'image en binaire */
-    
-        // const reader = new FileReader();
-        // reader.onloadend = function() {
-        //     console.log(reader.result);
-        //     const data = (reader.result).split(',')[1];
-        //     const binaryBlob = atob(data);
-        //     console.log(binaryBlob);
-        // }
-        // reader.readAsDataURL(fichier);
-    
+
         const fichier = document.getElementById("ajouter-photo").files[0];
         formData.append("image", fichier);
     
